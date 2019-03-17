@@ -19,3 +19,14 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('/register', 'Apis\AuthController@register');
 Route::post('/login', 'Apis\AuthController@login');
+
+//Products Routes
+Route::get('products', 'ProductController@index');
+Route::post('product', 'ProductController@store');
+Route::put('product', 'ProductController@store');
+Route::delete('product/{id}', 'ProductController@destroy');
+
+#Images Routes
+Route::get('image/{id}', 'ImageController@getImagesForProducts');
+Route::post('image', 'ImageController@store');
+Route::delete('image/{id}', 'ImageController@destroy');
