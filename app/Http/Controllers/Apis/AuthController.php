@@ -35,7 +35,7 @@ class AuthController extends Controller
         $response = $this->getAuthToken($request->email, $request->password);
 
         //Return access token
-        return response(['data' => json_decode((string)$response->getBody(), true)]);
+        return response(['auth' => json_decode((string)$response->getBody(), true), 'user' => $user]);
     }
 
     /**
