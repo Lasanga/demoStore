@@ -33,6 +33,7 @@ class ProductController extends Controller
         $product->displayName = $request->input('displayName');
         $product->supplierName = $request->input('supplierName');
         $product->quantity = $request->input('quantity');
+        $product->price = $request->input('price');
 
         $isCreated = $product->save();
 

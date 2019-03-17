@@ -32,10 +32,10 @@ class AuthController extends Controller
         $user->save();
 
         //Get auth token
-        $response = $this->getAuthToken($request->email, $request->password);
+        //$response = $this->getAuthToken($request->email, $request->password);
 
         //Return access token
-        return response(['auth' => json_decode((string)$response->getBody(), true), 'user' => $user]);
+        //return response(['auth' => json_decode((string)$response->getBody(), true), 'user' => $user]);
     }
 
     /**
@@ -65,7 +65,7 @@ class AuthController extends Controller
         }
 
         //Return access token
-        return response(['data' => json_decode((string)$response->getBody(), true)]);
+        return response(['auth' => json_decode((string)$response->getBody(), true), 'user' => $user]);
     }
 
     /**
@@ -81,7 +81,7 @@ class AuthController extends Controller
             'form_params' => [
                 'grant_type' => 'password',
                 'client_id' => '2',
-                'client_secret' => 'umbM2CWaroWNsQIhSpGrVSH2VKhoZjWKR0enj1zk',
+                'client_secret' => 'XDIKWkKlSdAzcUXJhppgYWBgCmjL7KU3cwjx2Y9R',
                 'username' => $email,
                 'password' => $password,
                 'scope' => '',
