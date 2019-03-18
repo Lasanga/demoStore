@@ -67,6 +67,9 @@ Thank you for considering contributing to the Laravel framework! The contributio
 - Set the domain to "demostore.dev.com"
 - Import the db script
 - Please find the demostore-client folder inside this and execute as per the steps proived in it
+- Laravel passport is used
+- Please run 'php artisan passport:install' to generate secret key
+- Please move to AuthController and in getAuthToken() please change client_secret to what you find in your database in oauth clients Laravel Password Grant Client - Secret
 
 ## Security Vulnerabilities
 
