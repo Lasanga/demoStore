@@ -64,9 +64,9 @@ Thank you for considering contributing to the Laravel framework! The contributio
 
 ## Steps to execute the project
 
-Set the domain to "demostore.dev.com"
-Import the db script
-Please find the demostore-client folder inside this and execute as per the steps proived in it
+- Set the domain to "demostore.dev.com"
+- Import the db script
+- Please find the demostore-client folder inside this and execute as per the steps proived in it
 
 ## Security Vulnerabilities
 
