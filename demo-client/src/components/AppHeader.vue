@@ -18,7 +18,7 @@
         <ul class="navbar-nav mr-auto">
           <!-- <li class="nav-item">
             <router-link :to="'/product'" class="nav-link active">Products</router-link>
-          </li> -->
+          </li>-->
           <li class="nav-item">
             <router-link :to="'/sale'" class="nav-link active">Sales</router-link>
           </li>
@@ -38,19 +38,10 @@
 <script>
 export default {
   name: "app-header",
-  
-  data(){
-      return{
-          isLogged: false
-      }
-  },
-    updated(){
-      let token = this.$session.get('accessToken');
-      if (token != null) {
-          this.isLogged = true
-      }else{
-           this.isLogged = false;
-      }
-  },
+  data() {
+    return {
+      isLogged: false
+    };
+  }
 };
 </script>

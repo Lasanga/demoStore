@@ -58,8 +58,7 @@ export default {
         axios.post('/login', newUser)
         .then(res => {
             this.$session.set('accessToken', res.data.auth.access_token);
-            localStorage.setItem('accessToken', res.data.auth.access_token);
-            localStorage.setItem('user', res.data.user.email);
+            this.$session.set('username', res.data.user.email);
 
             window.isAuthenticated = true;
 

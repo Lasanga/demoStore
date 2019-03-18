@@ -11,6 +11,7 @@ export default {
       let token = this.$session.get('accessToken');
       if (token != null) {
           this.$session.destroy();
+          localStorage.removeItem('cart');
           this.$router.push('/signin');
       }
   },

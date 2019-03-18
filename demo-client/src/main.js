@@ -10,6 +10,7 @@ import Logic from './components/Logic.vue'
 import Product from './components/Product.vue'
 import Image from './components/Images.vue'
 import SignOut from './components/SignOut.vue'
+import Sale from './components/Sale.vue'
 
 let options = {
   persist: true
@@ -32,7 +33,8 @@ const routes = [
   { path: '/logic', component: Logic },
   { path: '/product', component: Product },
   { path: '/product/:id', component: Image },
-  { path: '/signout', component: SignOut }
+  { path: '/signout', component: SignOut },
+  { path: '/sale', component: Sale }
 ];
 
 const router = new VueRouter({

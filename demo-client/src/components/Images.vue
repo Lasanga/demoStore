@@ -1,14 +1,23 @@
 <template>
   <div>
-      <div v-if="images.length == 0">
-          <div class="mt-5">
-              <i>Sorry! No images to preview</i>
-          </div>
+    <div>
+    </div>
+    <div v-if="images.length == 0">
+      <div class="mt-5">
+        <i>Sorry! No images to preview</i>
       </div>
-    <div v-if="images.length > 0" id="carouselExampleControls" class="carousel slide mt-5" data-ride="carousel">
+    </div>
+    <div
+      v-if="images.length > 0"
+      id="carouselExampleControls"
+      class="carousel slide mt-5"
+      data-ride="carousel"
+    >
       <div class="carousel-inner">
         <div class="carousel-item" v-for="image in images" v-bind:key="image.id">
-           <img v-bind:src="`http://localhost/demostore/storage/app/public/productImages/${image.productImage}`">
+          <img
+            v-bind:src="`http://localhost/demostore/storage/app/public/productImages/${image.productImage}`"
+          >
         </div>
         <div class="carousel-item active">Please click here :)</div>
       </div>
@@ -38,6 +47,12 @@ export default {
   name: "images",
   data() {
     return {
+      selecteFile: null,
+      productToken: "",
+      image: {
+        productImage: "",
+        productId: ""
+      },
       images: [],
       path: "http://localhost/demostore/storage/app/public/productImages/"
     };
@@ -48,10 +63,11 @@ export default {
   },
   methods: {
     getImages(id) {
-      axios.get("/image/" + id + "").then(res => {
-        this.images = res.data.data;
-        console.log(this.images);
-      });
+      (this.productToken = id),
+        axios.get("/image/" + id + "").then(res => {
+          this.images = res.data.data;
+          console.log(this.images);
+        });
     }
   }
 };

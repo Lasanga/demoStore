@@ -57,7 +57,7 @@
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" @click="addProduct()" class="btn btn-primary">Send message</button>
+                <button type="button" @click="addProduct()" class="btn btn-primary">Add</button>
               </div>
             </div>
           </div>
@@ -72,9 +72,13 @@
                 <div class="card-body">
                   <h5 class="card-title">{{product.displayName}}</h5>
                   <p class="card-text">Supplier: {{product.supplierName}}</p>
-                  <p class="card-text">Quantity: {{product.quantity}}</p>
-                  <a @click="gotoImages(product.id)" class="btn btn-primary">More Details</a>
-                  <a @click="addtoCart(product)" class="btn btn-success mt-2">Add to cart</a>
+                  <p class="card-text">Quantity left: {{product.quantity}}</p>
+                  <a @click="gotoImages(product.id)" class="btn btn-block btn-primary">More Details</a>
+                  <a @click="addtoCart(product)" class="btn btn-block btn-success mt-2">Add to cart</a>
+                  <!-- <div class="clearfix m-1">
+                    <button @click="inc()" class="btn btn-success btn-sm m-1">+</button>
+                    <button @click="dec()" class="btn btn-danger btn-sm">-</button>
+                  </div>-->
                 </div>
               </div>
             </div>
@@ -100,12 +104,23 @@
         </div>
         <div class="col-4">
           <div class="card mt-3">
-            <div class="card-body">
-              <h4>Cart</h4>
-              <ul>
-                <li>{{total}}</li>
-                <li>{{quantity}}</li>
+            <div class="card-header">
+              <h4>Cart - {{carts.length}}</h4>
+            </div>
+            <div class="card-body" style="height:315px; overflow: scroll">
+              <ul class="list-group" v-for="cart in carts" v-bind:key="cart.id">
+                <li class="list-group-item">
+                  <strong>Name</strong>
+                  {{cart.name}} -
+                  <strong>price</strong>
+                  {{cart.price}}
+                </li>
               </ul>
+            </div>
+            <div class="card-footer">
+              <i>Cart value: {{total}}</i>
+              <hr>
+              <button class="btn btn-block btn-success" @click="purchase(carts)">Purchase</button>
             </div>
           </div>
         </div>
@@ -142,6 +157,11 @@ export default {
         price: 0,
         qty: 0
       },
+      cartShow: {
+        name: "",
+        price: 0,
+        qty: 0
+      },
       total: 0,
       quantity: 1
     };
@@ -159,14 +179,14 @@ export default {
   methods: {
     showCart() {
       if (localStorage.getItem("cart")) {
-        this.carts = JSON.parse(localStorage.getItem('cart'));
+        this.carts = JSON.parse(localStorage.getItem("cart"));
         this.total = this.carts.reduce((var1, var2) => {
           return this.total + this.quantity * var2.price;
         }, 0);
       }
     },
     addtoCart(item) {
-      this.cartAdd.id = item.id;    
+      this.cartAdd.id = item.id;
       this.cartAdd.name = item.displayName;
       this.cartAdd.price = item.price;
       this.carts.push(this.cartAdd);
@@ -223,6 +243,14 @@ export default {
     },
     gotoImages(idd) {
       this.$router.push("/product/" + idd + "");
+    },
+    purchase(data){
+      let newPurchases = [{
+        customerName: this.$session.get('username'),
+        date: new Date,
+        data: data
+      }];
+      localStorage.setItem('purchases', JSON.stringify(newPurchases));
     }
   }
 };
