@@ -16,9 +16,9 @@
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <router-link :to="'/product'" class="nav-link active">Products</router-link>
-          </li>
+          </li> -->
           <li class="nav-item">
             <router-link :to="'/sale'" class="nav-link active">Sales</router-link>
           </li>
